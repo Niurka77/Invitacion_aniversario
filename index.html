@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>David & Diana — 23 Años</title>
+  <title>David & Diana — 23 Años Juntos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -12,96 +13,366 @@
     }
 
     body {
-      font-family: 'Playfair Display', serif;
-      background: #faf9f6; /* Crema suave, como papel fotográfico */
-      color: #333;
+      font-family: 'Cormorant Garamond', serif;
+      background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d5 50%, #f5f0e8 100%);
+      color: #2c2c2c;
       line-height: 1.6;
-      padding: 2rem 1rem;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
-      min-height: 100vh;
+      align-items: center;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    .card {
-      max-width: 600px;
-      text-align: center;
+    /* Decoración de fondo */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .invitation-card {
+      max-width: 700px;
+      width: 100%;
       background: white;
-      padding: 2.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border-radius: 20px;
+      box-shadow: 
+        0 20px 60px rgba(0,0,0,0.1),
+        0 0 0 1px rgba(212, 175, 55, 0.1),
+        inset 0 0 60px rgba(212, 175, 55, 0.03);
+      overflow: hidden;
+      position: relative;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Borde dorado decorativo */
+    .invitation-card::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border: 2px solid rgba(212, 175, 55, 0.3);
+      border-radius: 12px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .photo-container {
+      position: relative;
+      width: 100%;
+      height: 450px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d5 100%);
     }
 
     .photo {
       width: 100%;
-      max-width: 400px;
-      height: auto;
-      border-radius: 6px;
-      margin: 0 auto 1.8rem;
-      display: block;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      height: 100%;
+      object-fit: cover;
+      filter: sepia(20%) brightness(1.05);
+      transition: transform 0.8s ease;
     }
 
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 1.2rem;
-      color: #2c2c2c;
+    .invitation-card:hover .photo {
+      transform: scale(1.03);
+    }
+
+    /* Overlay dorado suave */
+    .photo-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(212, 175, 55, 0.1) 0%, transparent 50%, rgba(212, 175, 55, 0.15) 100%);
+      pointer-events: none;
+    }
+
+    /* Número de años destacado */
+    .years-badge {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      z-index: 2;
+      text-align: center;
+      border: 2px solid rgba(212, 175, 55, 0.4);
+    }
+
+    .years-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #d4af37;
+      line-height: 1;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .years-text {
+      font-size: 1rem;
+      color: #666;
+      font-style: italic;
+      margin-top: 0.3rem;
+    }
+
+    .content {
+      padding: 3rem 2.5rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .couple-names {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
       font-weight: 600;
+      color: #2c2c2c;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+    }
+
+    .ampersand {
+      color: #d4af37;
+      font-style: italic;
+      font-weight: 400;
     }
 
     .subtitle {
       font-size: 1.3rem;
-      margin-bottom: 2rem;
-      color: #5a5a5a;
+      color: #666;
       font-style: italic;
+      margin-bottom: 2rem;
+      line-height: 1.8;
     }
 
-    .details {
-      margin: 1.8rem 0;
+    .divider {
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #d4af37, transparent);
+      margin: 2rem auto;
+      position: relative;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '✦';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #d4af37;
+      font-size: 0.8rem;
+    }
+
+    .divider::before {
+      left: -15px;
+    }
+
+    .divider::after {
+      right: -15px;
+    }
+
+    .invitation-text {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .event-details {
+      background: linear-gradient(135deg, #faf8f5 0%, #f5f0e8 100%);
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .detail-item {
+      margin: 1.2rem 0;
+      font-size: 1.15rem;
+      color: #444;
+    }
+
+    .detail-label {
+      font-weight: 600;
+      color: #d4af37;
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .detail-value {
+      font-size: 1.3rem;
+      color: #2c2c2c;
+      font-weight: 500;
+    }
+
+    .closing {
+      margin-top: 2.5rem;
+      font-style: italic;
+      color: #777;
       font-size: 1.1rem;
       line-height: 1.8;
     }
 
-    .details p {
-      margin: 0.6rem 0;
-    }
-
     .signature {
-      margin-top: 2.2rem;
-      font-style: italic;
-      color: #777;
-      font-size: 1rem;
+      margin-top: 1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #d4af37;
+      font-weight: 600;
     }
 
-    /* Efecto sutil: firma en código fuente (invisible en pantalla) */
-    /* Hecho con ❤️ por su hija */
+    /* Decoración de corazones dorados */
+    .hearts {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      opacity: 0.3;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .couple-names {
+        font-size: 2.2rem;
+      }
+      
+      .years-number {
+        font-size: 2.5rem;
+      }
+      
+      .photo-container {
+        height: 350px;
+      }
+      
+      .content {
+        padding: 2rem 1.5rem;
+      }
+      
+      .detail-value {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Efecto de brillo dorado */
+    .golden-shine {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(212, 175, 55, 0.03) 50%,
+        transparent 70%
+      );
+      transform: rotate(45deg);
+      animation: shine 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shine {
+      0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
   </style>
-  <!-- Fuente elegante desde Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="card">
-    <img src="iamgen portada.png" alt="David y Diana" class="photo" />
-
-    <h1>23 años</h1>
-
-    <p class="subtitle">
-      de caminar juntos,  
-      de construir un mundo con risas,  
-      de amarse como solo ustedes saben.
-    </p>
-
-    <div class="details">
-      <p><strong>David & Diana</strong></p>
-      <p>nos invitan a celebrar su historia</p>
-      <p><strong>Sábado, 13 de diciembre de 2025</strong></p>
-      <p><strong> 5:00 p.m.</strong></p>
-      <p><strong>Lugar:Casa de la herm. Manuelita</strong></p>
+  <div class="invitation-card">
+    <div class="golden-shine"></div>
+    
+    <div class="photo-container">
+      <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=600&fit=crop" alt="David y Diana" class="photo" />
+      <div class="photo-overlay"></div>
+      
+      <div class="years-badge">
+        <div class="years-number">23</div>
+        <div class="years-text">años de amor</div>
+      </div>
     </div>
 
-    <p class="signature">
-      Con todo nuestro amor,<br>
-      La familia
-    </p>
+    <div class="content">
+      <div class="hearts">💛</div>
+      
+      <h1 class="couple-names">
+        David <span class="ampersand">&</span> Diana
+      </h1>
+      
+      <p class="subtitle">
+        nos complacen en invitarles a celebrar<br>
+        su aniversario de bodas
+      </p>
+
+      <div class="divider"></div>
+
+      <p class="invitation-text">
+        Acompáñenos a compartir un momento especial<br>
+        mientras celebramos 23 años de caminar juntos,<br>
+        de construir sueños y de amarse incondicionalmente
+      </p>
+
+      <div class="event-details">
+        <div class="detail-item">
+          <span class="detail-label">Fecha</span>
+          <span class="detail-value">Sábado, 13 de diciembre de 2025</span>
+        </div>
+        
+        <div class="detail-item">
+          <span class="detail-label">Hora</span>
+          <span class="detail-value">5:00 p.m.</span>
+        </div>
+        
+        <div class="detail-item">
+          <span class="detail-label">Lugar</span>
+          <span class="detail-value">Casa de la hermana Manuelita</span>
+        </div>
+      </div>
+
+      <p class="closing">
+        Su presencia será el mejor regalo<br>
+        para continuar celebrando el amor
+      </p>
+      
+      <p class="signature">
+        Con cariño, la familia
+      </p>
+    </div>
   </div>
 </body>
 </html>
